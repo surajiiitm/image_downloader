@@ -5,21 +5,26 @@ Created on Thu Nov  9 16:06:20 2017
 @author: spidy
 """
 
+# importing library
 import time
 import csv
 from urllib import request
 
-request.urlretrieve("http://www.merinolaminates.com/prodImg/Product/22293%20SF.jpg", "hello.jpeg")
-
+# file writing list of failed images url
 ifile = open("undownloaded_image.csv", "w")
 writer = csv.writer(ifile)
 
-with open("merino.csv") as csvfile:
+
+# input file name containing url's
+filename = "merino.csv"
+with open(filename) as csvfile:
     csvreader = csv.reader(csvfile)
     i = 0    
     for row in csvreader:
         print(row[1])
         i += 1
+        
+        # sleep after 180 call to website such that it doesn't blocks request
         if (i%180==0):
             print(i)
             time.sleep(120)
@@ -30,5 +35,6 @@ with open("merino.csv") as csvfile:
             print(e)
             writer.writerow([row[0], row[1]])
 
+# reflecting the write file and closing it
 ifile.flush()
 ifile.close()
