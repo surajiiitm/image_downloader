@@ -29,6 +29,9 @@ with open(filename) as csvfile:
             print(i)
             time.sleep(60)
         try:            
+            time.sleep(120)
+        try:
+            row[0] = row[0].replace("/Merino_Boards/", "")            
             request.urlretrieve(row[1], row[0])
         except ValueError as e:
             print(e)
