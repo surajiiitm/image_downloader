@@ -27,11 +27,10 @@ with open(filename) as csvfile:
         # sleep after 180 call to website such that it doesn't blocks request
         if (i%180==0):
             print(i)
+            
+            #sleep after every 180 downloads for 60 seconds
             time.sleep(60)
-        try:            
-            time.sleep(120)
         try:
-            row[0] = row[0].replace("/Merino_Boards/", "")            
             request.urlretrieve(row[1], row[0])
         except ValueError as e:
             print(e)
